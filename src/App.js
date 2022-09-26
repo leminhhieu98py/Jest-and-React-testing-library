@@ -1,22 +1,25 @@
 import { useState } from 'react';
 import './App.css';
-import { PRIMARY_COLOR, SECONDARY_COLOR } from './color';
+import { PRIMARY_COLOR, SECONDARY_COLOR, DISABLE_COLOR } from './color';
 
 function App() {
   const [color, setColor] = useState(PRIMARY_COLOR);
   const [isCheck, setIsCheck] = useState(false);
+  const newButtonColor =
+    color === PRIMARY_COLOR ? SECONDARY_COLOR : PRIMARY_COLOR;
 
   return (
     <div>
       <input type="checkbox" onClick={(e) => setIsCheck(e.target.checked)} />
       <button
-        onClick={() =>
-          setColor(color === PRIMARY_COLOR ? SECONDARY_COLOR : PRIMARY_COLOR)
-        }
-        style={{ backgroundColor: color, color: '#fff' }}
+        onClick={() => setColor(newButtonColor)}
+        style={{
+          backgroundColor: isCheck ? DISABLE_COLOR : color,
+          color: '#fff'
+        }}
         disabled={isCheck}
       >
-        Change to {color === PRIMARY_COLOR ? SECONDARY_COLOR : PRIMARY_COLOR}
+        Change to {newButtonColor}
       </button>
     </div>
   );

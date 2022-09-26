@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
-import { PRIMARY_COLOR, SECONDARY_COLOR } from './color';
+import { PRIMARY_COLOR, SECONDARY_COLOR, DISABLE_COLOR } from './color';
 
 test('Button at initial color', () => {
   render(<App />);
@@ -34,12 +34,15 @@ test('Toggle disable button', () => {
   });
   const checkboxElement = screen.getByRole('checkbox');
   expect(buttonElement).toBeEnabled();
+  expect(buttonElement).toHaveStyle({ backgroundColor: PRIMARY_COLOR });
 
   fireEvent.click(checkboxElement);
   expect(buttonElement).toBeDisabled();
+  expect(buttonElement).toHaveStyle({ backgroundColor: DISABLE_COLOR });
 
   fireEvent.click(checkboxElement);
   expect(buttonElement).toBeEnabled();
+  expect(buttonElement).toHaveStyle({ backgroundColor: PRIMARY_COLOR });
 });
 
 test('Toggle click checkbox', () => {
