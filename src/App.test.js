@@ -7,7 +7,7 @@ test('Button at initial color', () => {
   const buttonElement = screen.getByRole('button', {
     name: `Change to ${SECONDARY_COLOR}`
   });
-  expect(buttonElement.textContent).toBe(`Change to ${SECONDARY_COLOR}`);
+  expect(buttonElement).toHaveTextContent(`Change to ${SECONDARY_COLOR}`);
   expect(buttonElement).toHaveStyle({ backgroundColor: PRIMARY_COLOR });
 });
 
@@ -19,11 +19,11 @@ test('Button toggle color', () => {
   expect(buttonElement).toHaveStyle({ backgroundColor: PRIMARY_COLOR });
 
   fireEvent.click(buttonElement);
-  expect(buttonElement.textContent).toBe(`Change to ${PRIMARY_COLOR}`);
+  expect(buttonElement).toHaveTextContent(`Change to ${PRIMARY_COLOR}`);
   expect(buttonElement).toHaveStyle({ backgroundColor: SECONDARY_COLOR });
 
   fireEvent.click(buttonElement);
-  expect(buttonElement.textContent).toBe(`Change to ${SECONDARY_COLOR}`);
+  expect(buttonElement).toHaveTextContent(`Change to ${SECONDARY_COLOR}`);
   expect(buttonElement).toHaveStyle({ backgroundColor: PRIMARY_COLOR });
 });
 
