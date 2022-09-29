@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { PRIMARY_COLOR, SECONDARY_COLOR, DISABLE_COLOR } from './../../color';
+import { PRIMARY_COLOR, SECONDARY_COLOR, DISABLE_COLOR } from '../../color';
 
 function StudyPage() {
   const [color, setColor] = useState(PRIMARY_COLOR);
