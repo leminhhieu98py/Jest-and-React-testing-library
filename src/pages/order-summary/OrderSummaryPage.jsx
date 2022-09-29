@@ -1,9 +1,10 @@
+import React, { useState } from 'react';
 import { Button, Card, Checkbox, List, Space, Typography } from 'antd';
-import { useState } from 'react';
+
+const scoops = { total: 6, items: ['3 Vanilla'] };
+const toppings = { total: 4.5, items: ['M&MA', 'Hot fudge', 'Gummy bear'] };
 
 const OrderSummaryPage = () => {
-  const scoops = { total: 6, items: ['3 Vanilla'] };
-  const toppings = { total: 4.5, items: ['M&MA', 'Hot fudge', 'Gummy bear'] };
   const [canSubmit, setCanSubmit] = useState(false);
 
   const handleChange = () => {
