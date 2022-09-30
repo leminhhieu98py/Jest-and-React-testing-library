@@ -1,4 +1,5 @@
-import { screen, render, fireEvent } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import OrderSummaryPage from '../OrderSummaryPage';
 
 window.matchMedia =
@@ -11,29 +12,36 @@ window.matchMedia =
     };
   };
 
-test('Toggle Checkbox', () => {
-  render(<OrderSummaryPage />);
+const setup = (jsx) => {
+  return {
+    user: userEvent.setup(),
+    ...render(jsx)
+  };
+};
+
+test('Toggle Checkbox', async () => {
+  const { user } = setup(<OrderSummaryPage />);
 
   const checkboxElement = screen.getByRole('checkbox');
   expect(checkboxElement).not.toBeChecked();
 
-  fireEvent.click(checkboxElement);
+  await user.click(checkboxElement);
   expect(checkboxElement).toBeChecked();
 
-  fireEvent.click(checkboxElement);
+  await user.click(checkboxElement);
   expect(checkboxElement).not.toBeChecked();
 });
 
-test('Toggle checkbox to disable submit button', () => {
-  render(<OrderSummaryPage />);
+test('Toggle checkbox to disable submit button', async () => {
+  const { user } = setup(<OrderSummaryPage />);
 
   const checkboxElement = screen.getByRole('checkbox');
   const submitButtonElement = screen.getByRole('button');
   expect(submitButtonElement).toBeDisabled();
 
-  fireEvent.click(checkboxElement);
+  await user.click(checkboxElement);
   expect(submitButtonElement).toBeEnabled();
 
-  fireEvent.click(checkboxElement);
+  await user.click(checkboxElement);
   expect(submitButtonElement).toBeDisabled();
 });
