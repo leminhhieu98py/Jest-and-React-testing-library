@@ -6,11 +6,13 @@ export const handlers = [
       ctx.json([
         {
           name: 'Vanilla',
-          imagePath: '/images/vanilla.png'
+          imagePath: '/images/vanilla.png',
+          price: 2
         },
         {
           name: 'Chocolate',
-          imagePath: '/images/chocolate.png'
+          imagePath: '/images/chocolate.png',
+          price: 3
         }
       ])
     );
