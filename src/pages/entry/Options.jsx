@@ -5,6 +5,7 @@ import ScoopOption from './ScoopOption';
 
 export default function Options({ optionType }) {
   const [items, setItems] = useState([]);
+  const [totalMoney, setTotalMoney] = useState(0);
 
   // optionType is 'scoops' or 'toppings
   useEffect(() => {
@@ -18,15 +19,23 @@ export default function Options({ optionType }) {
 
   const optionItems = ItemComponent
     ? items.map((item) => {
+        const { name, imagePath, price } = item;
         return (
           <ItemComponent
-            key={item.name}
-            name={item.name}
-            imagePath={item.imagePath}
+            key={name}
+            name={name}
+            imagePath={imagePath}
+            price={price}
+            setTotalMoney={setTotalMoney}
           />
         );
       })
     : null;
 
-  return <Row data-testid="row">{optionItems}</Row>;
+  return (
+    <>
+      <h3>Total: {totalMoney}</h3>
+      <Row data-testid="row">{optionItems}</Row>
+    </>
+  );
 }
